@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="533">
+  <rect width="400" height="533" fill="#f0f0ed"/>
+  <text x="200" y="240" font-size="100" text-anchor="middle" dominant-baseline="middle">👔</text>
+  <text x="200" y="360" font-size="18" text-anchor="middle" fill="#aaa" font-family="sans-serif">Shirt 01</text>
+  <text x="200" y="385" font-size="12" text-anchor="middle" fill="#ccc" font-family="sans-serif">Replace with your photo</text>
+</svg>
