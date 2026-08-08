@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Orders — Suit-It</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="container">
+    <div class="header-inner">
+      <a href="index.html" class="logo"><span class="logo-icon">👔</span> Suit<span>-It</span></a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="products.html?category=shirt">Shirts</a>
+        <a href="products.html?category=pant">Pants</a>
+        <a href="products.html">All Products</a>
+        <a href="orders.html">My Orders</a>
+      </nav>
+      <div class="header-actions">
+        <a href="cart.html" class="icon-btn" style="position:relative">🛒<span class="cart-badge">0</span></a>
+        <button class="menu-toggle">☰</button>
+      </div>
+    </div>
+  </div>
+  <nav class="mobile-nav">
+    <a href="index.html">Home</a>
+    <a href="products.html">All Products</a>
+    <a href="orders.html">My Orders</a>
+    <a href="cart.html">🛒 Cart</a>
+  </nav>
+</header>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a><span class="sep">›</span><span>My Orders</span></div>
+    <h1>My Orders</h1>
+    <p>Track and view your order history</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="orders-list" id="ordersContainer"></div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bottom">© 2026 Suit-It. All rights reserved.</div>
+  </div>
+</footer>
+
+<button class="back-top" id="backTop">↑</button>
+<div class="modal-overlay" id="confirmModal"><div class="modal"><h3>Are you sure?</h3><p id="confirmMsg"></p><div class="modal-actions"><button class="btn btn-outline btn-sm" id="confirmNo">Cancel</button><button class="btn btn-danger btn-sm" id="confirmYes">Confirm</button></div></div></div>
+
+<script src="js/app.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const orders = JSON.parse(localStorage.getItem('suit_orders') || '[]');
+  const container = document.getElementById('ordersContainer');
+
+  if (orders.length === 0) {
+    container.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-icon">📦</div>
+        <h3>No orders yet</h3>
+        <p>You haven't placed any orders. Start shopping!</p>
+        <a href="products.html" class="btn btn-dark">Browse Products</a>
+      </div>`;
+    return;
+  }
+
+  container.innerHTML = orders.map(order => {
+    const date = new Date(order.date).toLocaleDateString('en-BD', { day: 'numeric', month: 'long', year: 'numeric' });
+    const itemNames = order.items.map(i => `${i.name} (${i.size}, ×${i.qty})`).join(', ');
+    const statusClass = order.status === 'Delivered' ? 'status-delivered' : order.status === 'Processing' ? 'status-processing' : 'status-pending';
+
+    return `
+    <div class="order-card">
+      <div class="order-card-header">
+        <div>
+          <div style="font-size:0.75rem;color:var(--mid);margin-bottom:2px">${date}</div>
+          <div style="font-weight:700;font-size:1rem">${order.id}</div>
+        </div>
+        <span class="order-status ${statusClass}">${order.status}</span>
+      </div>
+      <div class="order-card-body">
+        <div class="order-products">📦 ${itemNames}</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-top:8px">
+          <div>
+            <div style="font-size:0.78rem;color:var(--mid)">Delivery to: ${order.customer.district}, ${order.customer.area}</div>
+            <div style="font-size:0.78rem;color:var(--mid)">${order.payment}</div>
+          </div>
+          <div class="order-total">${formatBDT(order.total)}</div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+});
+</script>
+</body>
+</html>

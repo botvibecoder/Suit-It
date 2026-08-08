@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout — Suit-It</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="container">
+    <div class="header-inner">
+      <a href="index.html" class="logo"><span class="logo-icon">👔</span> Suit<span>-It</span></a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="products.html">All Products</a>
+        <a href="cart.html">Cart</a>
+      </nav>
+      <div class="header-actions">
+        <a href="cart.html" class="icon-btn" style="position:relative">🛒<span class="cart-badge">0</span></a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="breadcrumb"><a href="index.html">Home</a><span class="sep">›</span><a href="cart.html">Cart</a><span class="sep">›</span><span>Checkout</span></div>
+
+  <!-- Checkout form section -->
+  <div id="checkoutSection">
+    <div class="checkout-layout">
+
+      <!-- FORM -->
+      <div class="checkout-form-section">
+        <h2>Delivery Information</h2>
+        <form id="checkoutForm" novalidate>
+
+          <div class="form-group">
+            <label for="name">Full Name *</label>
+            <input type="text" id="name" placeholder="Your full name" required>
+            <div class="form-error">Name is required</div>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Mobile Number *</label>
+            <input type="tel" id="phone" placeholder="01XXXXXXXXX" required>
+            <div class="form-error">Enter valid BD number (01XXXXXXXXX)</div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="district">District *</label>
+              <input type="text" id="district" placeholder="e.g. Dhaka" required>
+              <div class="form-error">District is required</div>
+            </div>
+            <div class="form-group">
+              <label for="area">Area / Thana *</label>
+              <input type="text" id="area" placeholder="e.g. Mirpur" required>
+              <div class="form-error">Area is required</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="address">Full Address *</label>
+            <textarea id="address" placeholder="House no., road, landmark…" required></textarea>
+            <div class="form-error">Address is required</div>
+          </div>
+
+          <div class="form-group">
+            <label for="note">Order Note (Optional)</label>
+            <textarea id="note" placeholder="Any special instructions…"></textarea>
+          </div>
+
+          <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:20px">
+            <div style="display:flex;align-items:center;gap:8px;font-weight:600;margin-bottom:4px">💵 Cash on Delivery</div>
+            <p style="font-size:0.82rem;color:var(--mid)">Pay when your order arrives. No advance payment needed.</p>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-full" style="padding:14px">✓ Confirm Order</button>
+        </form>
+      </div>
+
+      <!-- ORDER SUMMARY -->
+      <div>
+        <div class="order-summary-panel">
+          <h3 style="margin-bottom:20px;font-size:1rem">Order Summary</h3>
+          <div id="orderItems"></div>
+          <hr class="summary-divider">
+          <div class="summary-row"><span>Subtotal</span><span id="coSubtotal">৳0</span></div>
+          <div class="summary-row"><span>Delivery</span><span id="coDelivery">৳80</span></div>
+          <div class="summary-row total"><span>Total</span><span id="coTotal">৳0</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SUCCESS SCREEN -->
+  <div class="success-screen" id="successScreen">
+    <div class="success-icon">🎉</div>
+    <h2>Order Placed Successfully!</h2>
+    <p>Your order has been received. We'll contact you soon to confirm delivery.</p>
+    <div class="order-id" id="successOrderId"></div>
+    <p style="font-size:0.85rem;color:var(--mid)">Total: <strong id="successTotal"></strong> · Cash on Delivery</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px">
+      <a href="orders.html" class="btn btn-outline">View My Orders</a>
+      <a href="index.html" class="btn btn-dark">Continue Shopping</a>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bottom">© 2026 Suit-It. All rights reserved.</div>
+  </div>
+</footer>
+
+<div class="modal-overlay" id="confirmModal"><div class="modal"><h3>Are you sure?</h3><p id="confirmMsg"></p><div class="modal-actions"><button class="btn btn-outline btn-sm" id="confirmNo">Cancel</button><button class="btn btn-danger btn-sm" id="confirmYes">Confirm</button></div></div></div>
+
+<script src="js/app.js"></script>
+<script src="js/checkout.js"></script>
+</body>
+</html>

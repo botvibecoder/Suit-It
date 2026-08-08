@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — Suit-It</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="container">
+    <div class="header-inner">
+      <a href="index.html" class="logo"><span class="logo-icon">👔</span> Suit<span>-It</span> <span style="font-size:0.65rem;background:var(--accent);color:#fff;padding:2px 7px;border-radius:4px;font-weight:600;vertical-align:middle">ADMIN</span></a>
+      <div class="header-actions">
+        <a href="index.html" class="btn btn-outline btn-sm">← Back to Store</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- NOTE: Add real authentication here before deploying -->
+<div class="container">
+  <div style="background:#fff3cd;border:1px solid #ffc107;border-radius:8px;padding:12px 16px;margin:20px 0;font-size:0.85rem;color:#856404">
+    ⚠ <strong>Prototype Mode:</strong> Products are saved to LocalStorage. Add a backend & authentication before going live.
+    <button id="resetBtn" style="margin-left:12px;background:none;border:1px solid #856404;color:#856404;padding:3px 10px;border-radius:4px;cursor:pointer;font-size:0.8rem">Reset to Default</button>
+  </div>
+
+  <div class="admin-layout">
+    <!-- SIDEBAR -->
+    <aside class="admin-sidebar">
+      <h3>Admin Panel</h3>
+      <nav class="admin-nav">
+        <a href="#" data-section="manageProducts" class="active">📋 Manage Products</a>
+        <a href="#" data-section="addProduct">➕ Add Product</a>
+        <a href="#" data-section="viewOrders">📦 View Orders</a>
+      </nav>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <div>
+
+      <!-- MANAGE PRODUCTS -->
+      <section class="admin-section active" id="manageProducts">
+        <h2>Manage Products</h2>
+        <div style="overflow-x:auto">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Image</th><th>Name</th><th>Price</th><th>Category</th><th>Stock</th><th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="adminTableBody">
+              <tr><td colspan="6" style="text-align:center;padding:40px"><div class="spinner" style="margin:0 auto"></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ADD / EDIT PRODUCT -->
+      <section class="admin-section" id="addProduct">
+        <h2>Add New Product</h2>
+        <div class="admin-form">
+          <form id="productForm" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Product Name *</label>
+                <input type="text" id="pName" placeholder="e.g. Classic Oxford Shirt" required>
+              </div>
+              <div class="form-group">
+                <label>Category *</label>
+                <select id="pCategory" required>
+                  <option value="">Select category</option>
+                  <option value="shirt">Shirt</option>
+                  <option value="pant">Pant</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>Price (৳) *</label>
+                <input type="number" id="pPrice" placeholder="850" required min="1">
+              </div>
+              <div class="form-group">
+                <label>Old Price (৳) — Optional</label>
+                <input type="number" id="pOldPrice" placeholder="1100" min="0">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Description</label>
+              <textarea id="pDesc" placeholder="Brief product description…" rows="3"></textarea>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>Sizes (comma-separated)</label>
+                <input type="text" id="pSizes" placeholder="S, M, L, XL">
+              </div>
+              <div class="form-group">
+                <label>Colors (comma-separated)</label>
+                <input type="text" id="pColors" placeholder="Black, White">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Image Path</label>
+              <input type="text" id="pImage" placeholder="images/shirt-01.jpg">
+              <div style="font-size:0.75rem;color:var(--mid);margin-top:4px">Place your image in the /images/ folder and enter the path here.</div>
+            </div>
+
+            <div style="display:flex;gap:24px;margin-bottom:20px">
+              <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:0.9rem">
+                <input type="checkbox" id="pStock" checked style="accent-color:var(--accent)"> In Stock
+              </label>
+              <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:0.9rem">
+                <input type="checkbox" id="pFeatured" style="accent-color:var(--accent)"> Featured on Homepage
+              </label>
+            </div>
+
+            <div style="display:flex;gap:10px">
+              <button type="submit" class="btn btn-primary" id="submitBtn">Add Product</button>
+              <button type="button" class="btn btn-outline" onclick="document.getElementById('productForm').reset();editingId=null;document.querySelector('#addProduct h2').textContent='Add New Product';document.getElementById('submitBtn').textContent='Add Product'">Reset Form</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- VIEW ORDERS -->
+      <section class="admin-section" id="viewOrders">
+        <h2>All Orders</h2>
+        <div id="adminOrdersList"></div>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="confirmModal"><div class="modal"><h3>Are you sure?</h3><p id="confirmMsg"></p><div class="modal-actions"><button class="btn btn-outline btn-sm" id="confirmNo">Cancel</button><button class="btn btn-danger btn-sm" id="confirmYes">Confirm</button></div></div></div>
+
+<script src="js/app.js"></script>
+<script src="js/admin.js"></script>
+<script>
+// Load orders in admin view
+document.querySelector('[data-section="viewOrders"]').addEventListener('click', () => {
+  const orders = JSON.parse(localStorage.getItem('suit_orders') || '[]');
+  const el = document.getElementById('adminOrdersList');
+  if (orders.length === 0) {
+    el.innerHTML = '<div class="empty-state"><div class="empty-icon">📦</div><h3>No orders yet</h3></div>';
+    return;
+  }
+  el.innerHTML = orders.map(o => {
+    const date = new Date(o.date).toLocaleString('en-BD');
+    const statusClass = o.status === 'Delivered' ? 'status-delivered' : o.status === 'Processing' ? 'status-processing' : 'status-pending';
+    return `
+    <div class="order-card" style="margin-bottom:12px">
+      <div class="order-card-header">
+        <div>
+          <div style="font-weight:700">${o.id}</div>
+          <div style="font-size:0.75rem;color:var(--mid)">${date}</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <select onchange="updateOrderStatus('${o.id}', this.value)" style="padding:4px 8px;border:1px solid var(--border);border-radius:4px;font-size:0.8rem">
+            <option ${o.status==='Pending'?'selected':''}>Pending</option>
+            <option ${o.status==='Processing'?'selected':''}>Processing</option>
+            <option ${o.status==='Delivered'?'selected':''}>Delivered</option>
+          </select>
+          <span class="order-status ${statusClass}">${o.status}</span>
+        </div>
+      </div>
+      <div class="order-card-body" style="font-size:0.85rem">
+        <strong>${o.customer.name}</strong> · ${o.customer.phone}<br>
+        ${o.customer.district}, ${o.customer.area} — ${o.customer.address}<br>
+        <div style="margin-top:8px;color:var(--mid)">${o.items.map(i=>`${i.name} ×${i.qty} (${i.size})`).join(', ')}</div>
+        <div style="margin-top:6px;font-weight:700">Total: ${formatBDT(o.total)}</div>
+        ${o.customer.note ? `<div style="margin-top:4px;color:var(--mid)">Note: ${o.customer.note}</div>` : ''}
+      </div>
+    </div>`;
+  }).join('');
+});
+
+function updateOrderStatus(id, status) {
+  const orders = JSON.parse(localStorage.getItem('suit_orders') || '[]');
+  const o = orders.find(x => x.id === id);
+  if (o) { o.status = status; localStorage.setItem('suit_orders', JSON.stringify(orders)); showToast('Status updated', 'success'); }
+}
+</script>
+</body>
+</html>

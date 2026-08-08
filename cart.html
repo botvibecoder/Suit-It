@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cart — Suit-It</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="container">
+    <div class="header-inner">
+      <a href="index.html" class="logo"><span class="logo-icon">👔</span> Suit<span>-It</span></a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="products.html?category=shirt">Shirts</a>
+        <a href="products.html?category=pant">Pants</a>
+        <a href="products.html">All Products</a>
+        <a href="orders.html">My Orders</a>
+      </nav>
+      <div class="header-actions">
+        <a href="cart.html" class="icon-btn" style="position:relative">🛒<span class="cart-badge">0</span></a>
+        <button class="menu-toggle">☰</button>
+      </div>
+    </div>
+  </div>
+  <nav class="mobile-nav">
+    <a href="index.html">Home</a>
+    <a href="products.html">All Products</a>
+    <a href="cart.html">🛒 Cart</a>
+  </nav>
+</header>
+
+<div class="container">
+  <div class="breadcrumb"><a href="index.html">Home</a><span class="sep">›</span><span>Cart</span></div>
+  <h1 style="margin-bottom:24px;font-size:1.6rem">Shopping Cart</h1>
+
+  <!-- Empty state -->
+  <div class="empty-state" id="cartEmpty" style="display:none">
+    <div class="empty-icon">🛒</div>
+    <h3>Your cart is empty</h3>
+    <p>Add some products to get started.</p>
+    <a href="products.html" class="btn btn-dark">Browse Products</a>
+  </div>
+
+  <!-- Cart layout -->
+  <div class="cart-layout">
+    <div>
+      <div id="cartItems"></div>
+      <div style="margin-top:16px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px">
+        <a href="products.html" class="btn btn-outline btn-sm">← Continue Shopping</a>
+        <button class="btn btn-sm" style="color:var(--danger);border-color:var(--danger);background:none" onclick="clearCart()">Clear Cart</button>
+      </div>
+    </div>
+
+    <div id="cartSummary" style="display:none">
+      <div class="cart-summary">
+        <h3>Order Summary</h3>
+        <div class="summary-row"><span>Subtotal</span><span id="subtotalEl">৳0</span></div>
+        <div class="summary-row"><span>Delivery Charge</span><span id="deliveryEl">৳80</span></div>
+        <div class="summary-row total"><span>Total</span><span id="totalEl">৳0</span></div>
+        <a href="checkout.html" class="btn btn-primary btn-full" style="margin-top:16px">Proceed to Checkout →</a>
+        <p style="font-size:0.75rem;color:var(--mid);text-align:center;margin-top:12px">Cash on Delivery • Safe & Secure</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bottom">© 2026 Suit-It. All rights reserved.</div>
+  </div>
+</footer>
+
+<button class="back-top" id="backTop">↑</button>
+<div class="modal-overlay" id="confirmModal"><div class="modal"><h3>Are you sure?</h3><p id="confirmMsg"></p><div class="modal-actions"><button class="btn btn-outline btn-sm" id="confirmNo">Cancel</button><button class="btn btn-danger btn-sm" id="confirmYes">Confirm</button></div></div></div>
+
+<script src="js/app.js"></script>
+<script src="js/cart.js"></script>
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suit-It — Style That Fits You</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="container">
+    <div class="header-inner">
+      <a href="index.html" class="logo"><span class="logo-icon">👔</span> Suit<span>-It</span></a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="products.html?category=shirt">Shirts</a>
+        <a href="products.html?category=pant">Pants</a>
+        <a href="products.html">All Products</a>
+        <a href="orders.html">My Orders</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-btn search-toggle" title="Search">🔍</button>
+        <a href="cart.html" class="icon-btn" style="position:relative" title="Cart">
+          🛒<span class="cart-badge" id="cartBadge1">0</span>
+        </a>
+        <button class="menu-toggle" title="Menu">☰</button>
+      </div>
+    </div>
+  </div>
+  <nav class="mobile-nav">
+    <a href="index.html">Home</a>
+    <a href="products.html?category=shirt">👔 Shirts</a>
+    <a href="products.html?category=pant">👖 Pants</a>
+    <a href="products.html">All Products</a>
+    <a href="orders.html">My Orders</a>
+    <a href="cart.html">🛒 Cart</a>
+  </nav>
+  <div class="search-bar">
+    <input type="text" placeholder="Search products…" id="headerSearch">
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-badge">New Collection 2026</div>
+        <h1>Style That<br><em>Fits You</em></h1>
+        <p>Quality shirts and pants for everyday confidence. Crafted for comfort, designed to impress.</p>
+        <div class="hero-btns">
+          <a href="products.html?category=shirt" class="btn btn-primary" style="background:#fff;color:var(--accent);">👔 Shop Shirts</a>
+          <a href="products.html?category=pant" class="btn btn-outline">👖 Shop Pants</a>
+        </div>
+      </div>
+      <div class="hero-visual">👔👖</div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="section categories">
+  <div class="container">
+    <div class="section-title">
+      <h2>Shop by Category</h2>
+      <p>Find exactly what you're looking for</p>
+    </div>
+    <div class="cat-grid">
+      <a href="products.html?category=shirt" class="cat-card">
+        <div class="cat-icon">👔</div>
+        <h3>Shirts</h3>
+        <p>Casual, formal & linen shirts for every occasion</p>
+        <span class="cat-link">Explore Shirts →</span>
+      </a>
+      <a href="products.html?category=pant" class="cat-card">
+        <div class="cat-icon">👖</div>
+        <h3>Pants</h3>
+        <p>Chinos, formals, cargos & comfortable joggers</p>
+        <span class="cat-link">Explore Pants →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED PRODUCTS -->
+<section class="section">
+  <div class="container">
+    <div class="section-title">
+      <h2>Featured Products</h2>
+      <p>Handpicked styles our customers love</p>
+    </div>
+    <div class="loading-spinner" id="featuredLoading"><div class="spinner"></div></div>
+    <div class="products-grid" id="featuredGrid"></div>
+    <div style="text-align:center;margin-top:36px">
+      <a href="products.html" class="btn btn-outline">View All Products →</a>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section class="section features">
+  <div class="container">
+    <div class="section-title">
+      <h2>Why Choose Suit-It</h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">✅</div>
+        <h4>Quality Products</h4>
+        <p>Carefully selected fabrics and stitching for lasting wear</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💰</div>
+        <h4>Affordable Price</h4>
+        <p>Great style doesn't have to cost a fortune</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🚚</div>
+        <h4>Fast Delivery</h4>
+        <p>Quick delivery across Bangladesh within 2–4 days</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📞</div>
+        <h4>Easy Ordering</h4>
+        <p>Simple checkout — order in minutes, pay on delivery</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">Suit<span>-It</span></div>
+        <p class="footer-desc">Your trusted online clothing store for quality shirts and pants. Style that fits your life.</p>
+        <div class="footer-contact">
+          <p>📞 01XXXXXXXXX (Replace with your number)</p>
+          <p>📍 Your Address, Dhaka, Bangladesh</p>
+        </div>
+        <div class="footer-social">
+          <a href="#" class="social-btn" title="Facebook">f</a>
+          <a href="#" class="social-btn" title="WhatsApp">W</a>
+        </div>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html?category=shirt">Shirts</a></li>
+          <li><a href="products.html?category=pant">Pants</a></li>
+          <li><a href="products.html">All Products</a></li>
+          <li><a href="cart.html">Cart</a></li>
+          <li><a href="orders.html">My Orders</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Help</h4>
+        <ul>
+          <li><a href="#">How to Order</a></li>
+          <li><a href="#">Delivery Info</a></li>
+          <li><a href="#">Return Policy</a></li>
+          <li><a href="#">Size Guide</a></li>
+          <li><a href="admin.html">Admin</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 Suit-It. All rights reserved.</div>
+  </div>
+</footer>
+
+<!-- Back to top -->
+<button class="back-top" id="backTop">↑</button>
+
+<!-- Confirm Modal -->
+<div class="modal-overlay" id="confirmModal">
+  <div class="modal">
+    <h3>Are you sure?</h3>
+    <p id="confirmMsg"></p>
+    <div class="modal-actions">
+      <button class="btn btn-outline btn-sm" id="confirmNo">Cancel</button>
+      <button class="btn btn-danger btn-sm" id="confirmYes">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/app.js"></script>
+<script>
+  // Load featured products
+  (async () => {
+    const products = await loadProducts();
+    const featured = products.filter(p => p.featured).slice(0, 8);
+    document.getElementById('featuredLoading').style.display = 'none';
+    document.getElementById('featuredGrid').innerHTML = featured.map(productCardHTML).join('');
+  })();
+</script>
+</body>
+</html>

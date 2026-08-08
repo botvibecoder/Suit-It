@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All Products — Suit-It</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="container">
+    <div class="header-inner">
+      <a href="index.html" class="logo"><span class="logo-icon">👔</span> Suit<span>-It</span></a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="products.html?category=shirt">Shirts</a>
+        <a href="products.html?category=pant">Pants</a>
+        <a href="products.html">All Products</a>
+        <a href="orders.html">My Orders</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-btn search-toggle" title="Search">🔍</button>
+        <a href="cart.html" class="icon-btn" style="position:relative">🛒<span class="cart-badge">0</span></a>
+        <button class="menu-toggle">☰</button>
+      </div>
+    </div>
+  </div>
+  <nav class="mobile-nav">
+    <a href="index.html">Home</a>
+    <a href="products.html?category=shirt">👔 Shirts</a>
+    <a href="products.html?category=pant">👖 Pants</a>
+    <a href="products.html">All Products</a>
+    <a href="orders.html">My Orders</a>
+    <a href="cart.html">🛒 Cart</a>
+  </nav>
+  <div class="search-bar"><input type="text" placeholder="Search products…"></div>
+</header>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a><span class="sep">›</span><span>Products</span></div>
+    <h1>All Products</h1>
+    <p>Shirts, pants and more — find your perfect fit</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="products-layout">
+
+    <!-- FILTERS SIDEBAR -->
+    <aside class="filters-panel">
+      <div class="filter-group">
+        <h4>Search</h4>
+        <div class="search-input-wrap">
+          <span class="si">🔍</span>
+          <input type="text" id="searchInput" placeholder="Product name…">
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <h4>Category</h4>
+        <div class="filter-btns">
+          <button class="filter-btn" data-cat="all">All</button>
+          <button class="filter-btn" data-cat="shirt">👔 Shirts</button>
+          <button class="filter-btn" data-cat="pant">👖 Pants</button>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <h4>Availability</h4>
+        <div class="filter-options">
+          <label class="filter-option"><input type="radio" name="avail" data-avail value="all" checked><label>All</label></label>
+          <label class="filter-option"><input type="radio" name="avail" data-avail value="in"><label>In Stock</label></label>
+          <label class="filter-option"><input type="radio" name="avail" data-avail value="out"><label>Out of Stock</label></label>
+        </div>
+      </div>
+    </aside>
+
+    <!-- PRODUCTS MAIN -->
+    <div>
+      <div class="products-header">
+        <span class="products-count" id="productCount">Loading…</span>
+        <select class="sort-select" id="sortSelect">
+          <option value="default">Default</option>
+          <option value="low">Price: Low to High</option>
+          <option value="high">Price: High to Low</option>
+        </select>
+      </div>
+      <div class="loading-spinner" id="loadSpinner"><div class="spinner"></div></div>
+      <div class="products-grid" id="productsGrid"></div>
+    </div>
+
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bottom">© 2026 Suit-It. All rights reserved. — <a href="index.html" style="color:var(--accent)">Back to Home</a></div>
+  </div>
+</footer>
+
+<button class="back-top" id="backTop">↑</button>
+<div class="modal-overlay" id="confirmModal"><div class="modal"><h3>Are you sure?</h3><p id="confirmMsg"></p><div class="modal-actions"><button class="btn btn-outline btn-sm" id="confirmNo">Cancel</button><button class="btn btn-danger btn-sm" id="confirmYes">Confirm</button></div></div></div>
+
+<script src="js/app.js"></script>
+<script src="js/products.js"></script>
+<script>
+  // Hide spinner after products load
+  const obs = new MutationObserver(() => {
+    document.getElementById('loadSpinner').style.display = 'none';
+  });
+  const grid = document.getElementById('productsGrid');
+  if (grid) obs.observe(grid, { childList: true });
+</script>
+</body>
+</html>
